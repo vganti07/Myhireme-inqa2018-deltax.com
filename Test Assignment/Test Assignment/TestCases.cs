@@ -1,11 +1,12 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
+
 namespace Test_Assignment
 {
-   
+    
+ 
     public class TestCases
     {
         public IWebDriver Browser;
@@ -21,8 +22,9 @@ namespace Test_Assignment
         {
             Browser = regPage.NavigatetoApp(baseURL);
         }
-
+        
         [Test]
+        [Category ("UI")]
         public void TestRegPageWithValidValues()
         {
             string firstName = "John";
@@ -59,7 +61,9 @@ namespace Test_Assignment
 
         public bool isValidDataIcon(IWebElement element)
         {
-            var validIcon = element.FindElement(By.ClassName("glyphicon-ok"));
+            IJavaScriptExecutor jse = (IJavaScriptExecutor)Browser;
+            IWebElement Parent = jse.ExecuteScript("return arguments[0].parentNode;", element) as IWebElement;
+            var validIcon = Parent.FindElement(By.ClassName("glyphicon-ok"));
             if (validIcon.Displayed && validIcon.Enabled)
             {
                 return true;
@@ -68,6 +72,7 @@ namespace Test_Assignment
                 return false;
         }
         [Test]
+        [Category("UI")]
         public void TestRegPagewithInvalidValues()
         {
             string firstName = "J";
@@ -105,6 +110,7 @@ namespace Test_Assignment
         }
 
         [Test]
+        [Category("UI")]
         public void TestRegPagewithBlankFieldsonCompulsaryDataFields()
         {
             string firstName = "";
