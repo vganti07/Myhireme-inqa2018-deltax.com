@@ -101,14 +101,9 @@ namespace Test_Assignment
             Assert.IsTrue((isInvalidDataIcon(Phone)), "Invalid data icon is not displayed on entering the incorrect data on Last Name" + Phone.Text);
             Email.SendKeys(eMail);
             Assert.IsTrue((isInvalidDataIcon(Email)), "Invalid data icon is not displayed on entering the incorrect data on Last Name" + Email.Text);
-            if (Submit.Enabled && Submit.Displayed)
-            {
-                Submit.Click();
-            }
-            else
-                Assert.Fail("The form has incorrect data and submission was unsuccessful");
+            Assert.IsFalse((Submit.Enabled),"The form has incorrect data but Submit is enabled");
         }
-
+ 
         [Test]
         [Category("UI")]
         public void TestRegPagewithBlankFieldsonCompulsaryDataFields()
@@ -139,12 +134,7 @@ namespace Test_Assignment
             Assert.IsTrue((isInvalidDataIcon(Pwd)), "Invalid data icon is not displayed on entering the incorrect data on Last Name" + Pwd.Text);
             Assert.IsTrue((isInvalidDataIcon(confirmPwd)), "Invalid data icon is not displayed on entering the incorrect data on Last Name" + confirmPwd.Text);
             Assert.IsTrue((isInvalidDataIcon(Email)), "Invalid data icon is not displayed on entering the incorrect data on Last Name" + Email.Text);
-            if (Submit.Enabled && Submit.Displayed)
-            {
-                Submit.Click();
-            }
-            else
-                Assert.Fail("The form has incorrect data and submission was unsuccessful");
+            Assert.IsFalse((Submit.Enabled), "The form has blank data in required fields but Submit is enabled");
    
 
         }
